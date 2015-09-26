@@ -3,13 +3,16 @@
  */
 //"use strict";
 
-"use strict";
+'use strict';
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 $(document).ready(function () {
 
     var alerta = "Esta variável foi criada com let TESTE";
+
+    $('h1').css('font-size', '50px');
+    $('body').css('background-color', '#ccc');
 
     console.log(alerta);
 

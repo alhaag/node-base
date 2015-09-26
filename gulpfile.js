@@ -16,7 +16,7 @@ var gulp        = require('gulp'),
     nodemon     = require('gulp-nodemon'),
     path        = require('path');
 
-gulp.task('default', ['transpile', 'lint', 'uglify', 'less', 'watch'] ,function() {
+gulp.task('default', ['transpile', /*'lint',*/ 'uglify', 'less', 'browser-sync'] ,function() {
     // place code for your default task here
 });
 
@@ -28,14 +28,14 @@ gulp.task('transpile', function () {
 });
 
 // syntactic analysis javascript
-gulp.task('lint', function(){
+/*gulp.task('lint', ['transpile'], function(){
     return gulp.src(['assets/*.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
-});
+});*/
 
 // minify javascript
-gulp.task('uglify', function() {
+gulp.task('uglify', ['transpile'], function() {
     return gulp.src('assets/js/transpile/*.js')
         .pipe(uglify())
         .pipe(rename({suffix: '.min'}))
@@ -54,7 +54,7 @@ gulp.task('less', function () {
 });
 
 // sync browser
-gulp.task('browser-sync', ['nodemon'], function() {
+gulp.task('browser-sync', ['nodemon', 'watch'], function() {
     browserSync.init(null, {
         proxy: "http://localhost:3000",
         files: [
@@ -79,6 +79,7 @@ gulp.task('nodemon', function (cb) {
 
 // watch files
 gulp.task('watch', function() {
-    gulp.watch(['assets/js/transpile/*.js'], ['lint', 'uglify']);
+    gulp.watch('assets/js/*.js', ['transpile']);
+    gulp.watch('assets/js/transpile/*.js', ['uglify']);
     gulp.watch('assets/less/**/*.less', ['less']);
 });

@@ -7,6 +7,9 @@ $(document).ready(function() {
 
     let alerta = "Esta variável foi criada com let TESTE";
 
+    $('h1').css('font-size', '50px');
+    $('body').css('background-color', '#ccc');
+
     console.log(alerta);
 
     let bool = true;
