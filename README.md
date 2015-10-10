@@ -1,4 +1,4 @@
-# node-base
+# node-skeleton
 
 Projeto Node.js base, pré configurado, que serve de base para a criação de novos projetos.
 
