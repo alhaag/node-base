@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1= title
+      
+  form#restore(name='restoreCfg', method='POST', enctype='multipart/form-data', action="/upload/send")
+      table.form(style='width:330px;')
+        tr.on-select-archive
+          td
+            br
+            label Arquivo de backup
+        tr.on-select-archive
+          td
+            input#arquivo-restore(type='file', size='40', value='', name='arquivoRestore')
+        tr
+          td
+            div
+              div#progress.on-upload Enviando arquivo:
+                span.archive
+              div#progressbox.on-upload
+                div#progressbar
+                div#statustxt 0%             
+              div#output.on-verify Verificando arquivo: 
+                span.archive
+                span.points
+  input#bt-send(type="button", value="Enviar")
+ 

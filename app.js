@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var contato = require('./routes/contato');
 var users = require('./routes/users');
 var quemsomos = require('./routes/quemsomos');
+var upload = require('./routes/upload');
 
 var app = express();
 
@@ -21,6 +22,7 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(bodyParser({ keepExtensions: true, uploadDir: "uploads" }));
 app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -29,6 +31,7 @@ app.use('/', routes);
 app.use('/contato', contato);
 app.use('/users', users);
 app.use('/quemsomos', quemsomos);
+app.use('/upload', upload);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

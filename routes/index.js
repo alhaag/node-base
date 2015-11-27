@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
 
   //res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-  var title = "Discovery Tecnologia";
+  var title = "NodeJs App";
   res.render('index', { title: title });
 });
 
