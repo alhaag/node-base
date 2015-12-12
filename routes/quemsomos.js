@@ -3,6 +3,9 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+  //res.setLocale("en");
+  res.cookie('lang', 'en', { maxAge: 900000, httpOnly: true });
+
   var frase;
 
   carregaFrase = function (callback) {
@@ -20,8 +23,9 @@ router.get('/', function(req, res, next) {
   carregaFrase(imprimeFrase);
 
   console.log('Olá');
-
-  res.send('respond with a resource');
+  // init & guess, see hepler below
+  var traducao = res.__("app.name");
+  res.send(traducao);
 });
 
 module.exports = router;

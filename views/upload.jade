@@ -1,27 +1,63 @@
 extends layout
 
 block content
-  h1= title
-      
-  form#restore(name='restoreCfg', method='POST', enctype='multipart/form-data', action="/upload/send")
-      table.form(style='width:330px;')
-        tr.on-select-archive
-          td
-            br
-            label Arquivo de backup
-        tr.on-select-archive
-          td
-            input#arquivo-restore(type='file', size='40', value='', name='arquivoRestore')
-        tr
-          td
-            div
-              div#progress.on-upload Enviando arquivo:
-                span.archive
-              div#progressbox.on-upload
-                div#progressbar
-                div#statustxt 0%             
-              div#output.on-verify Verificando arquivo: 
-                span.archive
-                span.points
-  input#bt-send(type="button", value="Enviar")
+    // Content Header (Page header)
+    section.content-header
+        h1
+            | Aplicação NodeJS
+            small Version 1.0
+        ol.breadcrumb
+            li
+                a(href='#')
+                    i.fa.fa-dashboard
+                    |  Home
+            li.active Dashboard
+    // Main content
+    section.content
+        .row
+            .col-md-12
+                .box
+                    .box-header.with-border
+                        h3.box-title Monthly Recap Report
+                        .box-tools.pull-right
+                            button.btn.btn-box-tool(type='button', data-widget='collapse')
+                                i.fa.fa-minus
+                            button.btn.btn-box-tool(type='button', data-widget='remove')
+                                i.fa.fa-times
+                    // /.box-header
+                    .box-body
+                        .row
+                            .col-md-12
+                                form#restore(name='restoreCfg', method='POST', enctype='multipart/form-data', action="/upload/send")
+                                    table.form(style='width:330px;')
+                                        tr.on-select-archive
+                                            td
+                                                br
+                                                label Arquivo de backup
+                                        tr.on-select-archive
+                                            td
+                                                input#arquivo-restore(type='file', size='40', value='', name='arquivoRestore')
+                                        tr
+                                            td
+                                                div
+                                                    div#progress.on-upload Enviando arquivo:
+                                                        span.archive
+                                                    div#progressbox.on-upload
+                                                        div#progressbar
+                                                        div#statustxt 0%
+                                                    div#output.on-verify Verificando arquivo:
+                                                        span.archive
+                                                        span.points
+                                input#bt-send(type="button", value="Enviar")
+                        // /.row
+                    // ./box-body
+                // /.box
+            // /.col
+        // /.row
+    // /.content
+
+block append scripts
+    script(src="/js/upload.js")
+
+
  

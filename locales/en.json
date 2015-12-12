@@ -1,0 +1,12 @@
+{
+	"app.name": "Skeleton Application Node",
+	"lang": {
+		"pt": "Portuguese",
+		"en": "English",
+		"es": "Spanish",
+		"current": "English"
+	},
+	"hello.teste": "Teste Hello EN",
+	"lang.current": "lang.current",
+	"Hello teste": "Hello teste"
+}

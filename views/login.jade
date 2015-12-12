@@ -1,0 +1,74 @@
+doctype html
+html
+   head
+      meta(charset='utf-8')
+      meta(http-equiv='X-UA-Compatible', content='IE=edge')
+      title Node Skeleton | Log in
+      // Tell the browser to be responsive to screen width
+      meta(content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no', name='viewport')
+      // Bootstrap 3.3.5
+      link(rel='stylesheet', href='libs/bootstrap-3.3.5/css/bootstrap.min.css')
+      // Font Awesome
+      link(rel='stylesheet', href='libs/font-awesome-4.4.0/css/font-awesome.min.css')
+      // Theme style
+      link(rel='stylesheet', href='libs/AdminLTE/dist/css/AdminLTE.min.css')
+      // iChecka
+      link(rel='stylesheet', href='libs/iCheck/square/blue.css')
+   body.hold-transition.login-page
+      .login-box
+         .login-logo
+            a(href='../../index2.html')
+               b Node
+               | SKELETON
+         // /.login-logo
+         .login-box-body
+            p.login-box-msg Sign in to start your session
+            form(action='/', method='post')
+               .form-group.has-feedback
+                  input.form-control(type='email', placeholder='Email')
+                  span.glyphicon.glyphicon-envelope.form-control-feedback
+               .form-group.has-feedback
+                  input.form-control(type='password', placeholder='Password')
+                  span.glyphicon.glyphicon-lock.form-control-feedback
+               .row
+                  .col-xs-8
+                     .checkbox.icheck
+                        label
+                           input(type='checkbox')
+                           |  Remember Me
+                  // /.col
+                  .col-xs-4
+                     button.btn.btn-primary.btn-block.btn-flat(type='submit') Sign In
+                  // /.col
+            .social-auth-links.text-center
+               p - OR -
+               a.btn.btn-block.btn-social.btn-facebook.btn-flat(href='#')
+                  i.fa.fa-facebook
+                  |  Sign in using
+                  |         Facebook
+               a.btn.btn-block.btn-social.btn-google.btn-flat(href='#')
+                  i.fa.fa-google-plus
+                  |  Sign in using
+                  |         Google+
+            // /.social-auth-links
+            a(href='#') I forgot my password
+            br
+            a.text-center(href='/register') Register a new membership
+         // /.login-box-body
+      // /.login-box
+      // jQuery 2.1.4
+      script(src='libs/jquery/jquery-2.1.4.min.js')
+      // translate
+      script(src="/libs/i18next/i18next-1.11.1.min.js")
+      // Bootstrap 3.3.5
+      script(src='libs/bootstrap-3.3.5/js/bootstrap.min.js')
+      // iCheck
+      script(src='libs/iCheck/icheck.min.js')
+      script.
+         $(function () {
+            $('input').iCheck({
+               checkboxClass: 'icheckbox_square-blue',
+               radioClass: 'iradio_square-blue',
+               increaseArea: '20%' // optional
+            });
+         });

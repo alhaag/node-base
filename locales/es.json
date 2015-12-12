@@ -1,0 +1,10 @@
+{
+  "app.name": "Aplicación Esqueleto Node",
+  "lang" : {
+    "pt": "Portugués",
+    "en": "Inglés",
+    "es": "Español",
+    "current": "Español"
+  },
+  "hello.teste": "Teste Hello ES"
+}
