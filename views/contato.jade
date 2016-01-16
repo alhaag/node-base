@@ -3,10 +3,11 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  p Teste i18n: #{__('lang.current')}
   p Contato
   p #{__("Hello teste")}
-
+  p #{__("Teste de nova frase.")}
+  p #{__("Testando outra frase.")}
+  p #{__("Hello teste")}
   div
     form(action='/contato/send-mail',method='post')
       div(data-role='fieldcontain')

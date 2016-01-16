@@ -26,7 +26,8 @@ i18n.configure({
     locales:['pt', 'en'],
     defaultLocale: 'pt',
     cookie: 'lang',
-    directory: __dirname + '/locales'
+    directory: __dirname + '/locales',
+    extension: '/translation.json'
 });
 
 // uncomment after placing your favicon in /public
@@ -39,6 +40,11 @@ app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/locales', express.static(__dirname + '/locales'));
+app.use('/plugins/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
+app.use('/plugins/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist'));
+app.use('/plugins/font-awesome', express.static(__dirname + '/node_modules/font-awesome'));
+app.use('/plugins/admin-lte', express.static(__dirname + '/node_modules/admin-lte/dist'));
+app.use('/plugins/cropit', express.static(__dirname + '/node_modules/cropit/dist'));
 app.use(i18n.init);
 
 app.use('/', routes);
@@ -49,7 +55,7 @@ app.use('/users', users);
 app.use('/quemsomos', quemsomos);
 app.use('/upload', upload);
 
-console.log(i18n.__('app.name'));
+console.log(i18n.__('Hello teste'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

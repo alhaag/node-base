@@ -1,7 +1,6 @@
 var express = require('express');
-var mysql = require('mysql');
-var mongo = require('mongoskin');
 var router = express.Router();
+var acl = [];
 
 router.get('/:id', function (req, res, next) {
     var id = req.params.id;
@@ -16,39 +15,66 @@ router.get('/:id', function (req, res, next) {
 /* GET users listing. */
 router.get('/', function (req, res, next) {
 
-    /*var connection = mysql.createConnection({
-     host     : 'localhost',
-     user     : 'root',
-     password : '',
-     database : '001_encontrepecas'
-     });
+  var rules = {
+    "id": "app", "label": "Privilégios", "children": [
+      {
+        "id": "users", "label": "Usuários", "children": [
+          {
+            "id": "admin",  "label": "Administrar", "isRule": true, "children": [
+              {
+                "id": "teste", "label": "Específica", "isRule": true
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "news", "label": "Notícias", "children": [
+          {
+            "id": "create", "label": "Criar", "isRule": true
+          },
+          {
+            "id":"edit", "label": "Editar", "isRule": true
+          },
+          {
+            "id":"delete", "label": "Excluir", "isRule": true
+          }
+        ]
+      }
+    ]
+  };
 
-     connection.connect();
+  parseRules(rules);
 
-     connection.query('SELECT * from empresa', function(err, rows, fields) {
-     if (!err) {
-     console.log('The solution is: ', rows);
-     res.render('users', {title:'Usuários', users: rows});
-     } else {
-     console.log('Error while performing Query.');
-     }
-     });
-
-     connection.end();*/
+  console.log(acl);
 
 
-    var db = mongo.db("mongodb://localhost:27017/test", {native_parser: true});
-    //db.bind('restaurants');
-    db.bind('restaurants').find().toArray(function (err, items) {
-        if (!err) {
-            //console.log('The solution is: ', items);
-            res.render('users', {title: 'Usuários', users: items});
-        } else {
-            console.log('Error while performing Query.');
-        }
-        db.close();
-    });
-
+  res.render('users', {title: 'Usuários', acl: acl});
 });
+
+function parseRules(obj, idResult, hierarchyResult) {
+  idResult = idResult || "";
+  hierarchyResult = hierarchyResult || "";
+  if (obj instanceof Array) {
+    obj.forEach(function(key) {
+      parseRules(key, idResult, hierarchyResult); // recursive call
+    });
+  } else {
+    Object.keys(obj).forEach(function(key) {
+      if (key === 'id') {
+        idResult+= (idResult === "") ? obj[key] :"_" + obj[key];
+      } else if (key === 'label') {
+        hierarchyResult+= (hierarchyResult === "") ? obj[key] : "/" + obj[key];
+      }
+    });
+    if(obj.hasOwnProperty("children")) {
+      parseRules(obj.children, idResult, hierarchyResult); // recursive call
+    }
+    if (obj.hasOwnProperty("isRule") && obj.isRule === true) {
+      // {id: "app_users_editar", hierarchy: "/App/Usuários", label: "Editar"}
+      acl.push({id: idResult, allow: false, hierarchy: hierarchyResult.replace(/[^\/]*$/, '').replace(/\/$/, ""), label: hierarchyResult.replace(/^.*[\\\/]/, '')});
+    }
+  }
+}
 
 module.exports = router;

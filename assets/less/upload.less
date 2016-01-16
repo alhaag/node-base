@@ -1,0 +1,53 @@
+.center-cropit{
+  width: 410px;
+  margin: 0 auto;
+}
+
+.cropit-image-preview {
+  background-color: #f8f8f8;
+  background-size: cover;
+  border: 5px solid #ccc;
+  border-radius: 3px;
+  margin: 50px 0;
+  width: 250px;
+  height: 250px;
+  cursor: move;
+}
+.cropit-image-background {
+  opacity: .2;
+  cursor: auto;
+}
+.image-size-label {
+  margin-top: 10px;
+}
+
+.cropit-image-zoom-input{
+  /*-webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 5px;
+  background: #eee;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  outline: none;
+  color: #333;*/
+}
+
+input {
+  /* Use relative position to prevent from being covered by image background */
+  position: relative;
+  z-index: 10;
+  display: block;
+}
+.export {
+
+}
+
+/* Hide file input */
+input.cropit-image-input {
+  visibility: hidden;
+}
+
+i.plus{
+  font-size: 25px;
+}

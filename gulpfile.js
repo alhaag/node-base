@@ -16,7 +16,8 @@ var gulp = require('gulp'),
   nodemon = require('gulp-nodemon'),
   tar = require('gulp-tar'),
   gzip = require('gulp-gzip'),
-  path = require('path');
+  path = require('path'),
+  i18next = require('i18next-parser');
 
 gulp.task('default', ['transpile', /*'lint',*/ 'uglify', 'less', 'browser-sync'], function () {
   // place code for your default task here
@@ -87,6 +88,16 @@ gulp.task('nodemon', function (cb) {
       cb();
     }
   });
+});
+
+gulp.task('i18n', function() {
+  gulp.src(['views/**/*', 'assets/**/*', './*.js'])
+    .pipe(i18next({
+      locales: ['pt', 'en'],
+      functions: ['__'],
+      output: '../locales' // compara o que ja foi traduzido para não limpar
+    }))
+    .pipe(gulp.dest('locales'));
 });
 
 // watch files

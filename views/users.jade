@@ -1,9 +1,43 @@
 extends layout
 
-block content
-  h1= title
-  p Welcome to #{title}
+block append styles
+  link(rel='stylesheet', href='/plugins/tree-multiselect/jquery.tree-multiselect.min.css')
 
-  ul
-    each val, index in users
-      li= index + ' : ' + val.name
+block content
+  section.content-header
+    h1
+      | Aplicação NodeJS
+      small Version 1.0
+    ol.breadcrumb
+      li
+        a(href='#')
+          i.fa.fa-dashboard
+          |  Home
+      li.active Dashboard
+  // Main content
+  section.content
+    .row
+      .col-md-12
+        .box
+          .box-header.with-border
+            h3.box-title Usuário
+            .box-tools.pull-right              
+          // /.box-header
+          .box-body
+            .row
+              .col-md-6
+                .form-group
+                  label E-mail
+                  input(type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email")
+              .col-md-6
+                .form-group
+                  label Privilégios
+                  select#acl(multiple="multiple")
+                    each val, index in acl
+                      option(value="#{val.id}" data-section="#{val.hierarchy}" selected=val.allow == true data-index="3")=val.label
+          .box-footer
+            a.btn.btn-default.pull-right Salvar
+block append scripts
+  script(src="plugins/tree-multiselect/jquery.tree-multiselect.min.js")
+  script(src="js/users.min.js")
+  
